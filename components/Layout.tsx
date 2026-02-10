@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Scissors, User, Calendar, Settings, Image, History, Moon, Sun } from 'lucide-react';
 import { useAppContext } from '../store/AppContext';
@@ -48,9 +47,12 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
           </button>
           
-          <Link to="/admin" className={`p-1.5 rounded-lg transition-all duration-300 border ${theme === 'dark' ? 'bg-zinc-900 border-white/10 text-zinc-400 hover:text-amber-500' : 'bg-white border-slate-200 text-slate-500 shadow-sm'}`}>
-            <Settings size={14} />
-          </Link>
+          {/* Admin settings button removed for User App experience */}
+          {isAdmin && (
+            <Link to="/" className={`p-1.5 rounded-lg transition-all duration-300 border ${theme === 'dark' ? 'bg-zinc-900 border-white/10 text-zinc-400 hover:text-amber-500' : 'bg-white border-slate-200 text-slate-500 shadow-sm'}`}>
+              <Home size={14} />
+            </Link>
+          )}
         </div>
       </header>
 
