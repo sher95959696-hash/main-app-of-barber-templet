@@ -15,6 +15,8 @@ export const HomeScreen: React.FC = () => {
     return `https://wa.me/${cleanNum}`;
   };
 
+  const hasStats = branding.stats && branding.stats.length > 0;
+
   return (
     <div className="space-y-10 animate-in fade-in duration-500 pb-32">
       
@@ -55,17 +57,19 @@ export const HomeScreen: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. STATS */}
-      <section className="px-6 -mt-12 relative z-30">
-        <div className={`rounded-[2.5rem] p-5 grid grid-cols-3 gap-4 border transition-all duration-500 ${theme === 'dark' ? 'bg-zinc-900/95 border-white/10 backdrop-blur-2xl shadow-2xl' : 'bg-white border-slate-200 shadow-xl shadow-slate-200/50'}`}>
-           {(branding.stats || []).map((s, i) => (
-             <div key={i} className={`flex flex-col items-center text-center border-r last:border-0 py-1 ${theme === 'dark' ? 'border-white/5' : 'border-slate-100'}`}>
-                <span className={`text-lg font-black italic tracking-tighter leading-none transition-colors ${theme === 'dark' ? 'text-white' : 'text-slate-800'}`}>{s.value}</span>
-                <span className={`text-[8px] font-black uppercase tracking-[0.15em] mt-2 leading-none ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-400'}`}>{s.label}</span>
-             </div>
-           ))}
-        </div>
-      </section>
+      {/* 2. STATS - Only show if data exists */}
+      {hasStats && (
+        <section className="px-6 -mt-12 relative z-30">
+          <div className={`rounded-[2.5rem] p-5 grid grid-cols-3 gap-4 border transition-all duration-500 ${theme === 'dark' ? 'bg-zinc-900/95 border-white/10 backdrop-blur-2xl shadow-2xl' : 'bg-white border-slate-200 shadow-xl shadow-slate-200/50'}`}>
+             {branding.stats.map((s, i) => (
+               <div key={i} className={`flex flex-col items-center text-center border-r last:border-0 py-1 ${theme === 'dark' ? 'border-white/5' : 'border-slate-100'}`}>
+                  <span className={`text-lg font-black italic tracking-tighter leading-none transition-colors ${theme === 'dark' ? 'text-white' : 'text-slate-800'}`}>{s.value}</span>
+                  <span className={`text-[8px] font-black uppercase tracking-[0.15em] mt-2 leading-none ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-400'}`}>{s.label}</span>
+               </div>
+             ))}
+          </div>
+        </section>
+      )}
 
       {/* 3. OFFERS */}
       {offers.length > 0 && (
@@ -90,7 +94,7 @@ export const HomeScreen: React.FC = () => {
         </section>
       )}
 
-      {/* 4. SERVICES - 2 PER ROW, IMMERSIVE & 50% LARGER */}
+      {/* 4. SERVICES - 2 PER ROW */}
       <section className="px-6 space-y-6">
         <div className="flex items-center justify-between px-2">
            <h3 className={`text-[10px] font-black uppercase tracking-[0.3em] transition-colors ${theme === 'dark' ? 'text-white/30' : 'text-slate-500'}`}>Featured Menu</h3>
@@ -119,7 +123,7 @@ export const HomeScreen: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. TEAM - MAGAZINE STYLE, LARGER & IMMERSIVE */}
+      {/* 5. TEAM */}
       <section className="space-y-6">
          <div className="px-8">
             <h3 className={`text-[10px] font-black uppercase tracking-[0.3em] transition-colors ${theme === 'dark' ? 'text-white/30' : 'text-slate-500'}`}>Master Artisans</h3>
