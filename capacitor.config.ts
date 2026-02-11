@@ -6,7 +6,7 @@ const config: CapacitorConfig = {
   appId: 'com.barberpro.elite', 
   
   // Name displayed under the icon
-  appName: 'Ibrar Hair Salon', 
+  appName: 'Abrar Hair Salon', 
   
   webDir: 'dist',
   server: {
